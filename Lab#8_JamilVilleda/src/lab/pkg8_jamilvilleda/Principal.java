@@ -383,7 +383,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(bt_ingresar)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,12 +567,12 @@ public class Principal extends javax.swing.JFrame {
                 numeroidentidad = JOptionPane.showInputDialog(this, "Ingrese un nuevo numero de identidad: ");
                 saldodisponible = Double.parseDouble(JOptionPane.showInputDialog(this, "Ingrese un nuevo saldo: "));
 
-                modelo.setValueAt(numerocuenta, jt_Clientes.getSelectedRow(), 0);
-                modelo.setValueAt(contraseña, jt_Clientes.getSelectedRow(), 1);
+                modelo.setValueAt(nombreusuario, jt_Clientes.getSelectedRow(), 0);
+                modelo.setValueAt(numerocuenta, jt_Clientes.getSelectedRow(), 1);
 
-                modelo.setValueAt(numeroidentidad, jt_Clientes.getSelectedRow(), 3);
-                modelo.setValueAt(saldodisponible, jt_Clientes.getSelectedRow(), 4);
-                modelo.setValueAt(nombreusuario, jt_Clientes.getSelectedRow(), 5);
+                modelo.setValueAt(contraseña, jt_Clientes.getSelectedRow(), 3);
+                modelo.setValueAt(numeroidentidad, jt_Clientes.getSelectedRow(), 4);
+                modelo.setValueAt(saldodisponible, jt_Clientes.getSelectedRow(), 5);
 
                 db.query.execute("update Clientes set NumerodeCuenta = " + numerocuenta + " where Nombre = '" + nombrecliente + "' ");
                 db.query.execute("update Clientes set Contraseña = '" + contraseña + "' where Nombre = '" + nombrecliente + "' ");
@@ -610,7 +610,7 @@ public class Principal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_bt_eliminarClienteMouseClicked
-  }
+    }
 
     /**
      * @param args the command line arguments
