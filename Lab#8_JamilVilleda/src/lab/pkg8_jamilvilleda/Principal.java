@@ -56,11 +56,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         tf_numeroCuenta = new javax.swing.JTextField();
         tf_nombreCliente = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tf_contraCliente = new javax.swing.JTextField();
+        tf_numeroIdentidad = new javax.swing.JTextField();
+        tf_saldoCliente = new javax.swing.JTextField();
+        bt_agregarCliente = new javax.swing.JButton();
         jp_ModificarCliente = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jt_Clientes = new javax.swing.JTable();
+        bt_modificarCliente = new javax.swing.JButton();
+        bt_eliminarCliente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -114,7 +118,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jp_AgregarProductosLayout.createSequentialGroup()
                         .addGap(170, 170, 170)
                         .addComponent(bt_AgregarProductos)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         jp_AgregarProductosLayout.setVerticalGroup(
             jp_AgregarProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,15 +178,15 @@ public class Principal extends javax.swing.JFrame {
         jp_ModificarProductosLayout.setHorizontalGroup(
             jp_ModificarProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_ModificarProductosLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
-            .addGroup(jp_ModificarProductosLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(bt_ModificarProductos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bt_EliminarProductos)
                 .addGap(119, 119, 119))
+            .addGroup(jp_ModificarProductosLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jp_ModificarProductosLayout.setVerticalGroup(
             jp_ModificarProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +212,12 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel12.setText("Saldo Disponible: ");
 
-        jButton1.setText("Agregar un Cliente");
+        bt_agregarCliente.setText("Agregar un Cliente");
+        bt_agregarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_agregarClienteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_AgregarClienteLayout = new javax.swing.GroupLayout(jp_AgregarCliente);
         jp_AgregarCliente.setLayout(jp_AgregarClienteLayout);
@@ -224,11 +233,11 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_AgregarClienteLayout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tf_numeroIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_AgregarClienteLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tf_contraCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_AgregarClienteLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(34, 34, 34)
@@ -237,9 +246,9 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jp_AgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                            .addComponent(bt_agregarCliente)
+                            .addComponent(tf_saldoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         jp_AgregarClienteLayout.setVerticalGroup(
             jp_AgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,31 +264,74 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jp_AgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_contraCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(jp_AgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_numeroIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jp_AgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_saldoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(bt_agregarCliente)
                 .addGap(30, 30, 30))
         );
 
         jTabbedPane1.addTab("Agregar Cliente", jp_AgregarCliente);
 
+        jt_Clientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Numero de Cuenta", "Contraseña", "Productos", "Numero de Identidad", "Saldo Disponible"
+            }
+        ));
+        jScrollPane2.setViewportView(jt_Clientes);
+
+        bt_modificarCliente.setText("Modificar Clientes");
+        bt_modificarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_modificarClienteMouseClicked(evt);
+            }
+        });
+
+        bt_eliminarCliente.setText("Eliminar Clientes");
+        bt_eliminarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_eliminarClienteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jp_ModificarClienteLayout = new javax.swing.GroupLayout(jp_ModificarCliente);
         jp_ModificarCliente.setLayout(jp_ModificarClienteLayout);
         jp_ModificarClienteLayout.setHorizontalGroup(
             jp_ModificarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(jp_ModificarClienteLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(bt_modificarCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_eliminarCliente)
+                .addGap(88, 88, 88))
+            .addGroup(jp_ModificarClienteLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jp_ModificarClienteLayout.setVerticalGroup(
             jp_ModificarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGroup(jp_ModificarClienteLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jp_ModificarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_modificarCliente)
+                    .addComponent(bt_eliminarCliente))
+                .addGap(20, 20, 20))
         );
 
         jTabbedPane1.addTab("Modificar/Eliminar Cliente", jp_ModificarCliente);
@@ -288,7 +340,7 @@ public class Principal extends javax.swing.JFrame {
         jd_administrador.getContentPane().setLayout(jd_administradorLayout);
         jd_administradorLayout.setHorizontalGroup(
             jd_administradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
         jd_administradorLayout.setVerticalGroup(
             jd_administradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,11 +467,13 @@ public class Principal extends javax.swing.JFrame {
                 String nombreproducto = JOptionPane.showInputDialog(this, "Ingrese el nombre del producto a modificar: ");
                 int cantidad = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese una nueva cantidad de producto."));
                 int precio = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese un nuevo precio de producto."));
-                modelo.setValueAt(nombre, jt_Productos.getSelectedRow(), 0);
-                modelo.setValueAt(cantidad, jt_Productos.getSelectedRow(), 1);
-                modelo.setValueAt(precio, jt_Productos.getSelectedRow(), 2);
+                modelo.setValueAt(nombre, jt_Productos.getSelectedRow(), 3);
+                modelo.setValueAt(cantidad, jt_Productos.getSelectedRow(), 0);
+                modelo.setValueAt(precio, jt_Productos.getSelectedRow(), 1);
 
                 db.query.execute("update Tabla1 set Nombre = '" + nombre + "' where Nombre = '" + nombreproducto + "'");
+                db.query.execute("update Tabla1 set Cantidad = " + cantidad + " where Nombre = '" + nombreproducto + "'");
+                db.query.execute("update Tabla1 set Precio = " + precio + " where Nombre = '" + nombreproducto + "'");
                 db.commit();
 
                 JOptionPane.showMessageDialog(this, "Se ha modificado la tabla y base correctamente.");
@@ -441,17 +495,122 @@ public class Principal extends javax.swing.JFrame {
 
             Dba db = new Dba("./Tabla1.accdb");
             db.conectar();
-            
-             String nombreproducto = JOptionPane.showInputDialog(this, "Ingrese el nombre del producto a eliminar: ");
-            
+
+            String nombreproducto = JOptionPane.showInputDialog(this, "Ingrese el nombre del producto a eliminar: ");
+
             try {
-                db.query.execute("delete from Tabla1 where Nombre = '" +nombreproducto + "' ");
+                db.query.execute("delete from Tabla1 where Nombre = '" + nombreproducto + "' ");
             } catch (Exception e) {
             }
 
         }
 
     }//GEN-LAST:event_bt_EliminarProductosMouseClicked
+
+    private void bt_agregarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_agregarClienteMouseClicked
+
+        Dba db = new Dba("./Tabla1.accdb");
+        db.conectar();
+
+        try {
+
+            String nombrecliente;
+            String contraseña;
+            int numerocuenta;
+            String numeroidentidad;
+            double saldodisponible;
+            String productos;
+
+            nombrecliente = tf_nombreCliente.getText();
+            contraseña = tf_contra.getText();
+            numerocuenta = Integer.parseInt(tf_numeroCuenta.getText());
+            numeroidentidad = tf_numeroIdentidad.getText();
+            saldodisponible = Double.parseDouble(tf_saldoCliente.getText());
+            productos = "0";
+
+            db.query.execute("INSERT INTO Clientes" + " (NumerodeCuenta,Contraseña,Productos,NumerodeIdentidad,SaldoDisponible,Nombre)" + " VALUES (" + numerocuenta + ", '" + contraseña + "', '" + productos + "', '" + numeroidentidad + "', " + saldodisponible + ", '" + nombrecliente + "')");
+            db.commit();
+            JOptionPane.showMessageDialog(this, "Se ha agregado el cliente a la base de datos correctamente. ");
+
+            DefaultTableModel modeloclientes = (DefaultTableModel) jt_Clientes.getModel();
+
+            modeloclientes.addRow(new Object[]{nombrecliente, numerocuenta, contraseña, productos, numeroidentidad, saldodisponible});
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db.desconectar();
+
+
+    }//GEN-LAST:event_bt_agregarClienteMouseClicked
+
+    private void bt_modificarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarClienteMouseClicked
+
+        if (jt_Productos.getSelectedRow() >= 0) {
+            Dba db = new Dba("./Tabla1.accdb");
+            db.conectar();
+
+            try {
+                DefaultTableModel modelo = (DefaultTableModel) jt_Clientes.getModel();
+
+                String nombreusuario;
+                int numerocuenta;
+                String contraseña;
+                String numeroidentidad;
+                double saldodisponible;
+                String nombrecliente;
+
+                nombrecliente = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente a modificar: ");
+                nombreusuario = JOptionPane.showInputDialog(this, "Ingrese un nuevo nombre de Cliente: ");
+                numerocuenta = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese un nuevo numero de cuenta: "));
+                contraseña = JOptionPane.showInputDialog(this, "Ingrese una nueva contraseña: ");
+                numeroidentidad = JOptionPane.showInputDialog(this, "Ingrese un nuevo numero de identidad: ");
+                saldodisponible = Double.parseDouble(JOptionPane.showInputDialog(this, "Ingrese un nuevo saldo: "));
+
+                modelo.setValueAt(numerocuenta, jt_Clientes.getSelectedRow(), 0);
+                modelo.setValueAt(contraseña, jt_Clientes.getSelectedRow(), 1);
+
+                modelo.setValueAt(numeroidentidad, jt_Clientes.getSelectedRow(), 3);
+                modelo.setValueAt(saldodisponible, jt_Clientes.getSelectedRow(), 4);
+                modelo.setValueAt(nombreusuario, jt_Clientes.getSelectedRow(), 5);
+
+                db.query.execute("update Clientes set NumerodeCuenta = " + numerocuenta + " where Nombre = '" + nombrecliente + "' ");
+                db.query.execute("update Clientes set Contraseña = '" + contraseña + "' where Nombre = '" + nombrecliente + "' ");
+                db.query.execute("update Clientes set NumerodeIdentidad = " + numeroidentidad + " where Nombre = '" + nombrecliente + "' ");
+                db.query.execute("update Clientes set SaldoDisponible = " + saldodisponible + " where Nombre = '" + nombrecliente + "' ");
+                db.query.execute("update Clientes set Nombre = '" + nombreusuario + "' where Nombre = '" + nombrecliente + "' ");
+                db.commit();
+
+                JOptionPane.showMessageDialog(this, "Se ha modificado la tabla y base correctamente.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            db.desconectar();
+        }
+
+
+    }//GEN-LAST:event_bt_modificarClienteMouseClicked
+
+    private void bt_eliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarClienteMouseClicked
+
+        if (jt_Clientes.getSelectedRow() >= 0) {
+            DefaultTableModel modelo = (DefaultTableModel) jt_Clientes.getModel();
+            modelo.removeRow(jt_Clientes.getSelectedRow());
+            jt_Clientes.setModel(modelo);
+
+            Dba db = new Dba("./Tabla1.accdb");
+            db.conectar();
+
+            String nombrecliente = JOptionPane.showInputDialog(this, "Ingrese el nombre del clienta a eliminar: ");
+
+            try {
+                db.query.execute("delete from Clientes where Nombre = '" + nombrecliente + "' ");
+            } catch (Exception e) {
+            }
+
+
+    }//GEN-LAST:event_bt_eliminarClienteMouseClicked
+  }
 
     /**
      * @param args the command line arguments
@@ -492,8 +651,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton bt_AgregarProductos;
     private javax.swing.JButton bt_EliminarProductos;
     private javax.swing.JButton bt_ModificarProductos;
+    private javax.swing.JButton bt_agregarCliente;
+    private javax.swing.JButton bt_eliminarCliente;
     private javax.swing.JButton bt_ingresar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bt_modificarCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -507,23 +668,25 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JDialog jd_administrador;
     private com.toedter.calendar.JDateChooser jdc_fechaProducto;
     private javax.swing.JPanel jp_AgregarCliente;
     private javax.swing.JPanel jp_AgregarProductos;
     private javax.swing.JPanel jp_ModificarCliente;
     private javax.swing.JPanel jp_ModificarProductos;
+    private javax.swing.JTable jt_Clientes;
     private javax.swing.JTable jt_Productos;
     private javax.swing.JTextField tf_cantidadProducto;
     private javax.swing.JTextField tf_contra;
+    private javax.swing.JTextField tf_contraCliente;
     private javax.swing.JTextField tf_nombreCliente;
     private javax.swing.JTextField tf_nombreProducto;
     private javax.swing.JTextField tf_numeroCuenta;
+    private javax.swing.JTextField tf_numeroIdentidad;
     private javax.swing.JTextField tf_precioProducto;
+    private javax.swing.JTextField tf_saldoCliente;
     private javax.swing.JTextField tf_usuario;
     // End of variables declaration//GEN-END:variables
 String usuario = "erick123";
